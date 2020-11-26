@@ -1,6 +1,8 @@
 import Marionette from 'backbone.marionette';
-import template from '../templates/item.jst';
+import template from '../templates/user_table.jst';
 
-export default Marionette.View.extend({
+var UsersView = Marionette.View.extend({
   template: template
 });
+
+export default UsersView
