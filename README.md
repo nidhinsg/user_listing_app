@@ -1,6 +1,6 @@
-# Webpack + MarionetteJS + Babel/ES6
+# A Simple Web App to list and add users.
 
-This is a modern JS skeleton with MarionetteJS for [Webpack](https://webpack.github.io/).
+Web Application designed using marionette and backbone for listing and adding users with the help of a few external API's
 
 ## Getting started
 
