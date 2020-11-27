@@ -3,10 +3,11 @@ import UserView from './UserView';
 
 var UsersChildView = Marionette.CollectionView.extend({
   childView: UserView,
-  tagName: 'tr',
+  tagName: 'tbody',
   initialize() {
-    this.collection = new UserItemCollection(userData);
-    console.log(this.collection.models[0].attributes.id);
+    this.collection = fullUsers;
+    this.collection.fetch();
+    console.log(this.collection)
   }
 });
 
@@ -22,20 +23,23 @@ var userData = [
     f_name: 'Test2F',
     l_name: 'Test2L',
     email: 'test2@test.com'
-  },
-  {
-    id: 3,
-    f_name: 'Test3F',
-    l_name: 'Test3L',
-    email: 'test3@test.com'
   }
 ];
     
 
-var UserItem = Backbone.Model.extend({});
+var UserItem = Backbone.Model.extend({
+	urlRoot: 'https://my-json-server.typicode.com/typicode/demo/posts'
+});
 
 var UserItemCollection = Backbone.Collection.extend({
-    model: UserItem
+    url: 'https://my-json-server.typicode.com/typicode/demo/posts',
+    model: UserItem,
+    parse: function(response) {
+    	console.log(response);
+    	return response
+    }
 });
+
+var fullUsers = new UserItemCollection();
 
 export default UsersChildView

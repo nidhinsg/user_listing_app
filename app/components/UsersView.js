@@ -5,11 +5,16 @@ import UserChildView from './UsersChildView'
 
 var UsersView = Marionette.View.extend({
   template: template,
+  tagName: 'table',
+  className: 'table table-hover',
   regions: {
-    tableRegion: '#user_listing_table'
+    body: {
+      el: 'tbody',
+      replaceElement: true
+    }
   },
   onRender() {
-    this.showChildView('tableRegion', new UserChildView());
+    this.showChildView('body', new UserChildView());
   }
 });
 
