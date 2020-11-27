@@ -3,8 +3,7 @@ import template from '../templates/user.jst';
 
 
 var UserView = Marionette.View.extend({
-    template: template,
-    tagName: 'tr'   
+    template: template
 });
 
 export default UserView
