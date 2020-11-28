@@ -7,36 +7,22 @@ var UsersChildView = Marionette.CollectionView.extend({
   initialize() {
     this.collection = fullUsers;
     this.collection.fetch();
-    console.log(this.collection)
+    console.log("Collection: ");
+    console.log(this.collection);
   }
 });
 
-var userData = [
-  {
-    id: 1,
-    f_name: 'Test1F',
-    l_name: 'Test1L',
-    email: 'test1@test.com'
-  },
-  {
-    id: 2,
-    f_name: 'Test2F',
-    l_name: 'Test2L',
-    email: 'test2@test.com'
-  }
-];
-    
-
 var UserItem = Backbone.Model.extend({
-	urlRoot: 'https://my-json-server.typicode.com/typicode/demo/posts'
+	urlRoot: 'http://localhost:3000/users.json'
 });
 
 var UserItemCollection = Backbone.Collection.extend({
-    url: 'https://my-json-server.typicode.com/typicode/demo/posts',
+    url: 'http://localhost:3000/users.json',
     model: UserItem,
     parse: function(response) {
-    	console.log(response);
-    	return response
+    	console.log('Response: ');
+    	console.log(response.users);
+    	return response.users
     }
 });
 
