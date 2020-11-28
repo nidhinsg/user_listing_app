@@ -1,5 +1,5 @@
 import Marionette from 'backbone.marionette';
-import ItemView from './UsersView';
+import ItemView from './FileUploadView';
 
 export default Marionette.Application.extend({
   region: '#app',

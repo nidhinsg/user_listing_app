@@ -16,12 +16,13 @@ var UserItem = Backbone.Model.extend({
 	urlRoot: 'http://localhost:3000/users.json'
 });
 
+// API Response Format
+// { users: [{ id: '', ....}, {....}]}
+
 var UserItemCollection = Backbone.Collection.extend({
     url: 'http://localhost:3000/users.json',
     model: UserItem,
     parse: function(response) {
-    	console.log('Response: ');
-    	console.log(response.users);
     	return response.users
     }
 });
