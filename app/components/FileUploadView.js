@@ -1,22 +1,21 @@
-import Marionette from 'backbone.marionette';
-import template from '../templates/file_upload.jst';
-import UsersView from './UsersView';
+import Marionette from "backbone.marionette";
+import template from "../templates/file_upload.jst";
+import UsersView from "./UsersView";
 
 
 var UploadView = Marionette.View.extend({
     template: template,
     regions: {
-    	tableRegion: '#table_content'
+    	tableRegion: "#table_content"
     },
     onRender() {
-    	this.showChildView('tableRegion', new UsersView());
+    	this.showChildView("tableRegion", new UsersView());
     },
     events: {
-    	'submit form': 'uploadFile'
+    	"submit form": "uploadFile"
     },
     ui: {
-    	'file': '#myFile',
-    	'form': 'form'
+    	"form": "form"
     },
     uploadFile(event) {
     	if(event){ event.preventDefault(); }
@@ -27,20 +26,17 @@ var UploadView = Marionette.View.extend({
 });
 
 var FileUpload = Backbone.Model.extend({
-	urlRoot: 'http://localhost:3000/users/upload_data'
+	urlRoot: "http://localhost:3000/users/upload_data"
 });
 
-// API Response Format
-// { : }
-
 var FileUploadCollection = Backbone.Collection.extend({
-    url: 'http://localhost:3000/users/upload_data.json',
+    url: "http://localhost:3000/users/upload_data.json",
     model: FileUpload,
     parse: function(response) {
-    	console.log(response);
     	if (response.status) {
     		$("#success_alert").html(response.message);
     		$("#success_alert").show();
+    		$("#collapseForm").removeClass("show");
     	} else {
     		$("#error_alert").html(response.message);
     		$("#error_alert").show();
