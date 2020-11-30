@@ -1,5 +1,6 @@
 import Marionette from 'backbone.marionette';
 import template from '../templates/user.jst';
+import ApiRoutes from './api_routes'
 
 
 var UserView = Marionette.View.extend({
@@ -21,15 +22,13 @@ var UserView = Marionette.View.extend({
     	var l_name = this.ui.l_name.val();
     	var email = this.ui.email.val();
     	var phone = this.ui.phone.val();
-    	var data = { 'first_name': f_name, 'last_name': l_name, 'email': email, 'phone': phone, 'id': user_id }
+    	var data = { 'first_name': f_name, 'last_name': l_name, 'email': email, 'phone': phone, 'pending_id': user_id }
     	var updateUser = new UserUploadCollection();
-    	console.log('====', updateUser);
     	this.collection = updateUser;
 	    this.collection.fetch({
-            url: "http://localhost:3000/users/" + user_id + ".json",
-            type: "put",
+            type: "post",
             contentType: "application/json",
-            data: JSON.stringify({'user': data}),
+            data: JSON.stringify({'person': data}),
         });
     }
 });
@@ -37,15 +36,18 @@ var UserView = Marionette.View.extend({
 var User = Backbone.Model.extend();
 
 var UserUploadCollection = Backbone.Collection.extend({
+    url: ApiRoutes.update_person,
     model: User,
     parse: function(response) {
     	if (response.status) {
-    		$("#success_alert").html(response.message);
-    		$("#success_alert").show();
+    		// $("#success_alert").html(response.message);
+    		// $("#success_alert").show();
+            location.reload();
     	} else {
-    		$("#error_alert").html(response.message);
-    		$("#error_alert").show();
-    	}
+    		// $("#error_alert").html(response.message);
+    		// $("#error_alert").show();
+    	    location.reload();
+        }
     	return response
     }
 });
