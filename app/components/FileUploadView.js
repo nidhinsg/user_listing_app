@@ -3,7 +3,8 @@ import template from "../templates/file_upload.jst";
 import UsersView from "./UsersView";
 import ApiRoutes from './api_routes'
 
-
+// View holding full table and File Upload Section
+// File Upload Action and API Calls are handled in this view
 var UploadView = Marionette.View.extend({
     template: template,
     regions: {

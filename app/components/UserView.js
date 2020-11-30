@@ -2,7 +2,8 @@ import Marionette from 'backbone.marionette';
 import template from '../templates/user.jst';
 import ApiRoutes from './api_routes'
 
-
+// Single User Row
+// Handles Save Action Against Unsaved Users
 var UserView = Marionette.View.extend({
     template: template,
     tagName: 'tr',

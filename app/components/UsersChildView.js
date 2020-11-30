@@ -2,6 +2,7 @@ import Marionette from 'backbone.marionette';
 import UserView from './UserView';
 import ApiRoutes from './api_routes'
 
+// Gets people data and renders it
 var UsersChildView = Marionette.CollectionView.extend({
   childView: UserView,
   tagName: 'tbody',
@@ -14,7 +15,8 @@ var UsersChildView = Marionette.CollectionView.extend({
 var UserItem = Backbone.Model.extend();
 
 // API Response Format
-// { users: [{ id: '', ....}, {....}]}
+// { data: { people: [{ id: '', ....}, {....}]}}
+// Returns people array to loop tr section in table
 
 var UserItemCollection = Backbone.Collection.extend({
     url: ApiRoutes.get_people,
